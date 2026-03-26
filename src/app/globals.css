@@ -2,26 +2,150 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  ===== BRAND FONTS =====
+
+  TO ACTIVATE BRAND FONTS:
+  1. Place font files in src/app/fonts/:
+     - ethnocentric-rg.woff2 (Ethnocentric Light — Titles & Logotype)
+     - CamphorPro-Regular.woff2 (Camphor Pro Regular — Body)
+     - CamphorPro-Medium.woff2 (Camphor Pro Medium)
+     - CamphorPro-Bold.woff2 (Camphor Pro Bold)
+  2. Uncomment the @font-face blocks below.
+
+  Until then, the system uses fallback fonts (Rajdhani for display, Source Sans 3 for body).
+*/
+
+/* --- Uncomment when font files are placed in src/app/fonts/ ---
+@font-face {
+  font-family: "Ethnocentric";
+  src: url("./fonts/ethnocentric-rg.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Camphor Pro";
+  src: url("./fonts/CamphorPro-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Camphor Pro";
+  src: url("./fonts/CamphorPro-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Camphor Pro";
+  src: url("./fonts/CamphorPro-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+--- End uncomment --- */
+
+/* Google Fonts fallback until brand fonts are installed */
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap");
+
+/* ===== CSS CUSTOM PROPERTIES ===== */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #003764;
+  --primary-dark: #003764;
+  --primary-light: #0097ce;
+  --accent-orange: #ff5f00;
+  --neutral-gray: #d0cfcd;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ===== BASE STYLES ===== */
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Camphor Pro", "Source Sans 3", system-ui, -apple-system,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus Ring for A11y */
+*:focus-visible {
+  outline: 2px solid var(--primary-light);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neutral-gray);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9a9896;
+}
+
+/* Selection */
+::selection {
+  background: #e6f4fa;
+  color: #003764;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .state-layer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .state-layer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .state-layer:hover::after {
+    opacity: 0.04;
+  }
+
+  .state-layer:active::after {
+    opacity: 0.08;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
