@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, Globe } from "lucide-react";
+import { Mail, Globe } from "lucide-react";
 import JhedAiLogo from "./brand/JhedAiLogo";
 
 export default function Footer() {
@@ -24,26 +24,13 @@ export default function Footer() {
             </p>
             {/* Contact info */}
             <div className="space-y-2.5">
-              <p className="text-label-md text-white font-bold font-body">
-                Edison Vásquez
-              </p>
-              <p className="text-body-sm text-white/60 font-body">CEO</p>
-              <div className="flex items-center gap-2 text-body-sm text-white/70 font-body">
-                <Phone className="w-3.5 h-3.5 text-primary-300" />
-                <a
-                  href="tel:+56982780892"
-                  className="hover:text-white transition-colors"
-                >
-                  +56 9 8278 0892
-                </a>
-              </div>
               <div className="flex items-center gap-2 text-body-sm text-white/70 font-body">
                 <Mail className="w-3.5 h-3.5 text-primary-300" />
                 <a
-                  href="mailto:edison@jhedai.com"
+                  href="mailto:contacto@jhedai.com"
                   className="hover:text-white transition-colors"
                 >
-                  edison@jhedai.com
+                  contacto@jhedai.com
                 </a>
               </div>
               <div className="flex items-center gap-2 text-body-sm text-white/70 font-body">
@@ -106,7 +93,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:edison@jhedai.com"
+                  href="mailto:contacto@jhedai.com"
                   className="text-body-md text-white/70 hover:text-white transition-colors font-body"
                 >
                   edison@jhedai.com

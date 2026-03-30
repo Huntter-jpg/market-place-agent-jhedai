@@ -23,7 +23,7 @@ export default function FeaturedAgent() {
             transition={{ duration: 0.5 }}
           >
             <TrendingUp className="w-4 h-4 text-accent-400" />
-            <span className="text-label-md text-white/80 font-bold font-body">
+            <span className="text-label-md text-white font-bold font-body">
               Agente Destacado
             </span>
           </motion.div>
@@ -40,7 +40,7 @@ export default function FeaturedAgent() {
           </motion.h2>
 
           <motion.p
-            className="text-body-lg text-white/80 max-w-2xl mx-auto leading-relaxed font-body"
+            className="text-body-lg text-white max-w-2xl mx-auto leading-relaxed font-body"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -92,7 +92,7 @@ export default function FeaturedAgent() {
                 <div className="w-8 h-8 rounded-full bg-primary-500/20 flex items-center justify-center shrink-0 text-[10px] font-bold text-white/70 border border-primary-500/30">
                   AI
                 </div>
-                <div className="bg-white/[0.05] border border-white/10 p-4 rounded-2xl rounded-tl-none text-body-sm text-white/90 max-w-[85%] font-body leading-relaxed">
+                <div className="bg-white/[0.05] border border-white/10 p-4 rounded-2xl rounded-tl-none text-body-sm text-white max-w-[85%] font-body leading-relaxed">
                   ¡Hola! Soy el Agente de Ventas de JhedAI. Puedo mostrarte cómo
                   nuestros agentes de IA se adaptan a tu proceso comercial...
                 </div>

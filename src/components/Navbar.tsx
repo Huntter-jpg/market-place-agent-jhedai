@@ -88,8 +88,8 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className={`flex items-center gap-2 px-5 py-2.5 text-body-sm font-bold font-body rounded-full transition-all whitespace-nowrap ${
               isDarkMode
-                ? "bg-white/[0.08] border border-white/20 text-white hover:bg-white/[0.16]"
-                : "bg-white border border-neutral-300 text-neutral-700 hover:bg-neutral-50"
+                ? "bg-green-600/20 border border-green-500/30 text-white hover:bg-green-600/30"
+                : "bg-green-50 border border-green-200 text-green-700 hover:bg-green-100"
             }`}
           >
             <MessageCircle className="w-4 h-4 text-green-400" />
@@ -165,8 +165,8 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className={`flex items-center justify-center gap-2 h-12 font-bold font-body rounded-full ${
                     isDarkMode
-                      ? "bg-white/10 border border-white/20 text-white"
-                      : "bg-white border border-neutral-300 text-neutral-700"
+                      ? "bg-green-600/20 border border-green-500/30 text-white"
+                      : "bg-green-50 border border-green-200 text-green-700"
                   }`}
                 >
                   <MessageCircle className="w-4 h-4 text-green-400" />
