@@ -96,7 +96,7 @@ export default function Footer() {
                   href="mailto:contacto@jhedai.com"
                   className="text-body-md text-white/70 hover:text-white transition-colors font-body"
                 >
-                  edison@jhedai.com
+                  contacto@jhedai.com
                 </a>
               </li>
             </ul>

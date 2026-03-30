@@ -10,37 +10,44 @@ import {
   Minimize2,
   Calendar,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useAgent } from "./AgentProvider";
 
 const CALENDAR_URL = "https://calendar.app.google/xJ65YJbmrHFXmoqeA";
-
-const chatMessages = [
-  {
-    role: "ai" as const,
-    text: "¡Hola! Soy el Agente de Ventas de JhedAI. ¿En qué puedo ayudarte hoy?",
-  },
-  {
-    role: "user" as const,
-    text: "¿Qué tipos de agentes ofrecen?",
-  },
-  {
-    role: "ai" as const,
-    text: "Diseñamos agentes de Ventas, Soporte 24/7, Marketing, Analítica y más. Todos se integran con tus sistemas vía API. ¿Te gustaría agendar una demo?",
-  },
-];
 
 interface AgentWidgetProps {
   onExpandToModal: () => void;
 }
 
 export default function AgentWidget({ onExpandToModal }: AgentWidgetProps) {
+  const { messages, isTyping, sendMessage } = useAgent();
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, isTyping, isOpen]);
 
   const handleExpandToModal = () => {
     setIsOpen(false);
     onExpandToModal();
+  };
+
+  const handleSend = () => {
+    if (!inputValue.trim() || isTyping) return;
+    sendMessage(inputValue);
+    setInputValue("");
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
   };
 
   return (
@@ -107,14 +114,14 @@ export default function AgentWidget({ onExpandToModal }: AgentWidgetProps) {
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-none">
-              {chatMessages.map((msg, i) =>
+              {messages.map((msg, i) =>
                 msg.role === "ai" ? (
                   <motion.div
                     key={i}
                     className="flex gap-2"
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: i * 0.06 }}
+                    transition={{ duration: 0.3, delay: 0.05 }}
                   >
                     <div className="w-6 h-6 rounded-full bg-primary-500/20 flex items-center justify-center shrink-0 text-[8px] font-bold text-primary-200 border border-primary-500/30">
                       AI
@@ -129,40 +136,65 @@ export default function AgentWidget({ onExpandToModal }: AgentWidgetProps) {
                     className="flex gap-2 justify-end"
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: i * 0.06 }}
+                    transition={{ duration: 0.3, delay: 0.05 }}
                   >
                     <div className="bg-accent-500 p-3 rounded-xl rounded-tr-none text-body-sm text-white font-bold max-w-[80%] font-body">
                       {msg.text}
                     </div>
                   </motion.div>
-                )
+                ),
               )}
 
-              {/* CTA bubble */}
-              <motion.div
-                className="flex gap-2"
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: chatMessages.length * 0.06 }}
-              >
-                <div className="w-6 h-6 rounded-full bg-primary-500/20 flex items-center justify-center shrink-0 text-[8px] font-bold text-primary-200 border border-primary-500/30">
-                  AI
-                </div>
-                <div className="bg-white/[0.06] border border-white/10 p-3 rounded-xl rounded-tl-none max-w-[85%]">
-                  <p className="text-body-sm text-primary-100 font-body mb-2">
-                    ¿Agendamos una demo?
-                  </p>
-                  <a
-                    href={CALENDAR_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent-500 text-white text-label-sm font-bold font-body rounded-full hover:bg-accent-600 transition-colors"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    Agendar demo
-                  </a>
-                </div>
-              </motion.div>
+              {/* Typing indicator */}
+              {isTyping && (
+                <motion.div
+                  className="flex gap-2"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <div className="w-6 h-6 rounded-full bg-primary-500/20 flex items-center justify-center shrink-0 text-[8px] font-bold text-primary-200 border border-primary-500/30">
+                    AI
+                  </div>
+                  <div className="bg-white/[0.06] border border-white/10 px-4 py-3 rounded-xl rounded-tl-none">
+                    <div className="flex gap-1">
+                      <span className="w-1.5 h-1.5 bg-primary-300 rounded-full animate-bounce [animation-delay:0ms]" />
+                      <span className="w-1.5 h-1.5 bg-primary-300 rounded-full animate-bounce [animation-delay:150ms]" />
+                      <span className="w-1.5 h-1.5 bg-primary-300 rounded-full animate-bounce [animation-delay:300ms]" />
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Calendar CTA */}
+              {!isTyping && messages.length >= 1 && (
+                <motion.div
+                  className="flex gap-2"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                >
+                  <div className="w-6 h-6 rounded-full bg-primary-500/20 flex items-center justify-center shrink-0 text-[8px] font-bold text-primary-200 border border-primary-500/30">
+                    AI
+                  </div>
+                  <div className="bg-white/[0.06] border border-white/10 p-3 rounded-xl rounded-tl-none max-w-[85%]">
+                    <p className="text-body-sm text-primary-100 font-body mb-2">
+                      ¿Agendamos una demo?
+                    </p>
+                    <a
+                      href={CALENDAR_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent-500 text-white text-label-sm font-bold font-body rounded-full hover:bg-accent-600 transition-colors"
+                    >
+                      <Calendar className="w-3.5 h-3.5" />
+                      Agendar demo
+                    </a>
+                  </div>
+                </motion.div>
+              )}
+
+              <div ref={messagesEndRef} />
             </div>
 
             {/* Input */}
@@ -172,10 +204,16 @@ export default function AgentWidget({ onExpandToModal }: AgentWidgetProps) {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
                   placeholder="Escribe un mensaje..."
-                  className="flex-1 h-10 bg-white/[0.06] border border-white/10 rounded-full px-4 text-body-sm text-white placeholder:text-primary-400 font-body outline-none focus:border-primary-400 transition-colors"
+                  disabled={isTyping}
+                  className="flex-1 h-10 bg-white/[0.06] border border-white/10 rounded-full px-4 text-body-sm text-white placeholder:text-primary-400 font-body outline-none focus:border-primary-400 transition-colors disabled:opacity-50"
                 />
-                <button className="w-10 h-10 bg-accent-500 rounded-full flex items-center justify-center hover:bg-accent-600 transition-colors shrink-0">
+                <button
+                  onClick={handleSend}
+                  disabled={isTyping || !inputValue.trim()}
+                  className="w-10 h-10 bg-accent-500 rounded-full flex items-center justify-center hover:bg-accent-600 transition-colors shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
                   <ArrowRight className="w-4 h-4 text-white" />
                 </button>
               </div>

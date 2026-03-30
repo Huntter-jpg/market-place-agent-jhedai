@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { TrendingUp, MessageSquare, Sparkles } from "lucide-react";
-import { useAgentModal } from "../AgentProvider";
+import { useAgent } from "../AgentProvider";
 
 export default function FeaturedAgent() {
-  const { openModal } = useAgentModal();
+  const { openModal } = useAgent();
 
   return (
     <section className="py-24 lg:py-32 px-6 lg:px-8 bg-primary-900 relative overflow-hidden">
