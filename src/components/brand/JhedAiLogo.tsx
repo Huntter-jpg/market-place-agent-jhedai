@@ -2,40 +2,35 @@
 
 interface JhedAiLogoProps {
   variant?: "horizontal" | "vertical";
-  size?: "full" | "compact";
+  size?: "full" | "compact" | "footer";
   theme?: "light" | "dark";
   className?: string;
 }
 
 export default function JhedAiLogo({
   size = "full",
-  theme = "light",
   className = "",
 }: JhedAiLogoProps) {
-  const isDark = theme === "dark";
+  const isFooter = size === "footer";
+  const src = isFooter
+    ? "/assets/logo-blanco.png"
+    : "/assets/Marca-Horizontal_Mesa-de-trabajo-1.svg";
 
-  /*  ── SVG logo with mobile-first responsive sizing ──
-      "full"    → h-12 (48px mobile) → md:h-24 (96px desktop)
-                   Brand-dominant, scaled up for impact.
-      "compact" → h-10 (40px mobile) → md:h-16 (64px desktop)
-                   Balanced with action buttons (~44px), used on scroll.
-
-      2X autonomy area: p-1.5 on wrapper = 6px clear space around mark. */
-  const h = size === "full" ? "h-12 md:h-24" : "h-10 md:h-16";
+  /* Header SVG is wide (3.3:1) → h-10 (40px) yields ~131px width.
+     Footer PNG is square (1:1) → use w-36 (144px) to match visual width. */
+  const sizeClass = isFooter ? "w-36 h-auto" : "h-10 w-auto";
 
   return (
     <div
-      className={`flex items-center p-1.5 ${className}`}
+      className={`flex items-center ${className}`}
       role="img"
       aria-label="JHED AI - Ir a la página principal"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/assets/Marca-Horizontal_Mesa-de-trabajo-1.svg"
+        src={src}
         alt="JhedAI - Artificial Intelligence"
-        className={`object-contain w-auto ${h} ${
-          isDark ? "brightness-0 invert" : ""
-        }`}
+        className={`object-contain ${sizeClass}`}
       />
     </div>
   );

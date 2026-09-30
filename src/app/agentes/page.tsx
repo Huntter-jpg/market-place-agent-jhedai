@@ -24,7 +24,7 @@ export default function AgentesPage() {
 
         <div className="max-w-container mx-auto relative z-10">
           <motion.h1
-            className="font-display text-display-sm sm:text-display-md text-primary-900 tracking-tight mb-4"
+            className="font-display text-display-sm sm:text-display-md text-ink mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -32,7 +32,7 @@ export default function AgentesPage() {
             Agentes especialistas
           </motion.h1>
           <motion.p
-            className="text-body-lg text-neutral-600 max-w-2xl font-body"
+            className="text-body-lg text-ink-subtle max-w-2xl font-body"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -44,18 +44,18 @@ export default function AgentesPage() {
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="sticky top-[72px] z-30 bg-white border-b border-neutral-200 px-6 lg:px-8">
+      {/* Category Filter — sticky below scrolled navbar (~64px) */}
+      <section className="sticky top-[64px] z-30 bg-white/90 backdrop-blur-xl border-b border-neutral-200 px-6 lg:px-8">
         <div className="max-w-container mx-auto py-4">
           <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full text-label-sm font-bold font-body whitespace-nowrap transition-all ${
+                className={`px-5 py-2.5 rounded-full text-label-sm font-bold font-body whitespace-nowrap transition-all ${
                   activeCategory === cat
                     ? "bg-primary-900 text-white shadow-sm"
-                    : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+                    : "bg-neutral-100 text-ink-subtle hover:bg-neutral-200"
                 }`}
               >
                 {cat}
@@ -66,7 +66,7 @@ export default function AgentesPage() {
       </section>
 
       {/* Agent Grid */}
-      <section className="py-12 px-6 lg:px-8">
+      <section className="py-16 lg:py-20 px-6 lg:px-8">
         <div className="max-w-container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredAgents.map((agent, index) => (
@@ -75,8 +75,8 @@ export default function AgentesPage() {
           </div>
 
           {filteredAgents.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-body-lg text-neutral-500 font-body">
+            <div className="text-center py-20">
+              <p className="text-body-lg text-ink-muted font-body">
                 No hay agentes en esta categoría aún.
               </p>
             </div>

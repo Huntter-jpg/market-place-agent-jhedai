@@ -54,7 +54,7 @@ const cardVariants = {
 
 export default function BenefitsSection() {
   return (
-    <section className="py-24 px-6 lg:px-8 bg-neutral-50">
+    <section className="py-32 lg:py-40 px-6 lg:px-8 bg-neutral-50">
       <div className="max-w-container mx-auto">
         <SectionHeader
           title="Convierte la IA en resultados de negocio,"
@@ -66,20 +66,20 @@ export default function BenefitsSection() {
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
-              className="bg-white border border-neutral-200 rounded-xl p-7 hover:border-primary-300 hover:shadow-elevation-2 transition-all duration-300 group w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+              className="bg-white border border-neutral-200 rounded-xl p-8 hover:border-primary-200 hover:shadow-elevation-2 transition-all duration-300 group w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
               custom={index}
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
             >
-              <div className="w-12 h-12 bg-primary-50 border border-primary-100 rounded-lg flex items-center justify-center mb-5 group-hover:bg-primary-500 group-hover:border-primary-500 transition-colors duration-300">
+              <div className="w-12 h-12 bg-primary-50 border border-primary-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary-500 group-hover:border-primary-500 transition-colors duration-300">
                 <benefit.icon className="w-6 h-6 text-primary-600 group-hover:text-white transition-colors duration-300" />
               </div>
-              <h3 className="text-title-lg text-primary-900 font-bold font-body mb-3 group-hover:text-primary-600 transition-colors">
+              <h3 className="text-title-lg text-ink font-bold font-body mb-3 group-hover:text-primary-600 transition-colors">
                 {benefit.title}
               </h3>
-              <p className="text-body-md text-neutral-600 leading-relaxed font-body">
+              <p className="text-body-md text-ink-subtle font-body">
                 {benefit.description}
               </p>
             </motion.div>

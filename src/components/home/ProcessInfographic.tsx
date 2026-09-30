@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import {
   Search,
   PenTool,
@@ -52,7 +51,7 @@ const steps = [
 
 export default function ProcessInfographic() {
   return (
-    <section className="py-24 lg:py-32 px-6 lg:px-8 relative overflow-hidden bg-white">
+    <section className="py-32 lg:py-40 px-6 lg:px-8 relative overflow-hidden bg-white">
       {/* Background decoration */}
       <div className="absolute top-1/2 right-[-5%] -translate-y-1/2">
         <AbstractShape variant="mixed" size={500} color="#0097ce" opacity={0.03} />
@@ -65,7 +64,7 @@ export default function ProcessInfographic() {
           subtitle='No vendemos "bots genéricos". Diseñamos agentes inteligentes alineados con la estrategia, procesos y sistemas de tu organización.'
         />
 
-        {/* ═══ DESKTOP — Infographic Image ═══ */}
+        {/* DESKTOP — Infographic Image */}
         <motion.div
           className="hidden lg:block max-w-4xl mx-auto mb-10"
           initial={{ opacity: 0, y: 30 }}
@@ -73,19 +72,18 @@ export default function ProcessInfographic() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <Image
-            src="/assets/infografia agentes personalizados.png"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/infografia-agentes-personalizados.png"
             alt="Arquitectura de Agentes Inteligentes JhedAI: Del Diagnóstico al Retorno de Inversión"
-            width={1200}
-            height={500}
-            className="w-full h-auto rounded-xl shadow-elevation-2"
+            className="w-full h-auto rounded-2xl shadow-[0_20px_60px_-15px_rgba(0,55,100,0.25)] ring-1 ring-neutral-200/50"
           />
         </motion.div>
 
-        {/* ═══ MOBILE — Vertical Timeline ═══ */}
+        {/* MOBILE — Vertical Timeline */}
         <div className="lg:hidden">
           {/* Phase 1 */}
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-8">
             <div className="h-px flex-1 bg-gradient-to-r from-primary-200 to-transparent" />
             <span className="text-label-md text-primary-600 font-bold font-body bg-primary-50 border border-primary-100 px-4 py-1.5 rounded-full whitespace-nowrap text-center">
               Fase 1: Alineación y Diseño
@@ -93,7 +91,7 @@ export default function ProcessInfographic() {
             <div className="h-px flex-1 bg-gradient-to-l from-primary-200 to-transparent" />
           </div>
 
-          <div className="relative pl-14 space-y-5 mb-10">
+          <div className="relative pl-14 space-y-6 mb-12">
             <div className="absolute left-[22px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#0097ce] to-[#0097ce]/30" />
 
             {steps.slice(0, 2).map((step, i) => (
@@ -117,11 +115,11 @@ export default function ProcessInfographic() {
                   </span>
                 </div>
 
-                <div className="flex-1 bg-white border border-neutral-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-elevation-2 transition-all duration-300">
-                  <h3 className="text-title-sm text-primary-900 font-bold font-body mb-2 group-hover:text-primary-600 transition-colors">
+                <div className="flex-1 bg-white border border-neutral-200 rounded-xl p-6 hover:border-primary-200 hover:shadow-elevation-2 transition-all duration-300">
+                  <h3 className="text-title-sm text-ink font-bold font-body mb-2 group-hover:text-primary-600 transition-colors">
                     {step.title}
                   </h3>
-                  <p className="text-body-sm text-neutral-600 leading-relaxed font-body">
+                  <p className="text-body-sm text-ink-subtle font-body">
                     {step.description}
                   </p>
                 </div>
@@ -130,7 +128,7 @@ export default function ProcessInfographic() {
           </div>
 
           {/* Phase 2 */}
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-8">
             <div className="h-px flex-1 bg-gradient-to-r from-primary-200 to-transparent" />
             <span className="text-label-md text-primary-600 font-bold font-body bg-primary-50 border border-primary-100 px-4 py-1.5 rounded-full whitespace-nowrap text-center">
               Fase 2: Especialización y Valor
@@ -138,7 +136,7 @@ export default function ProcessInfographic() {
             <div className="h-px flex-1 bg-gradient-to-l from-primary-200 to-transparent" />
           </div>
 
-          <div className="relative pl-14 space-y-5">
+          <div className="relative pl-14 space-y-6">
             <div className="absolute left-[22px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#003764]/40 to-[#003764]" />
 
             {steps.slice(2).map((step, i) => (
@@ -162,11 +160,11 @@ export default function ProcessInfographic() {
                   </span>
                 </div>
 
-                <div className="flex-1 bg-white border border-neutral-200 rounded-xl p-5 hover:border-primary-200 hover:shadow-elevation-2 transition-all duration-300">
-                  <h3 className="text-title-sm text-primary-900 font-bold font-body mb-2 group-hover:text-primary-600 transition-colors">
+                <div className="flex-1 bg-white border border-neutral-200 rounded-xl p-6 hover:border-primary-200 hover:shadow-elevation-2 transition-all duration-300">
+                  <h3 className="text-title-sm text-ink font-bold font-body mb-2 group-hover:text-primary-600 transition-colors">
                     {step.title}
                   </h3>
-                  <p className="text-body-sm text-neutral-600 leading-relaxed font-body">
+                  <p className="text-body-sm text-ink-subtle font-body">
                     {step.description}
                   </p>
                 </div>
