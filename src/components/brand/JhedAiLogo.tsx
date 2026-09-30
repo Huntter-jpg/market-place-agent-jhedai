@@ -13,7 +13,7 @@ export default function JhedAiLogo({
 }: JhedAiLogoProps) {
   const isFooter = size === "footer";
   const src = isFooter
-    ? "/assets/logo-blanco.png"
+    ? "/assets/logo-blanco.webp"
     : "/assets/Marca-Horizontal_Mesa-de-trabajo-1.svg";
 
   /* Header SVG is wide (3.3:1) → h-10 (40px) yields ~131px width.

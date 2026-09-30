@@ -80,7 +80,7 @@ export default function FeaturedAgent() {
               <div className="w-12 h-12 rounded-full overflow-hidden bg-primary-500 flex items-center justify-center shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/imagen_chatbot.png"
+                  src="/imagen_chatbot.webp"
                   alt="Asistente JhedAI"
                   className="w-full h-full object-cover"
                 />
@@ -102,7 +102,7 @@ export default function FeaturedAgent() {
                 <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 border border-primary-500/30">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/imagen_chatbot.png"
+                    src="/imagen_chatbot.webp"
                     alt="Asistente JhedAI"
                     className="w-full h-full object-cover"
                   />

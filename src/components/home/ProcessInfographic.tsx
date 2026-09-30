@@ -74,7 +74,7 @@ export default function ProcessInfographic() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/infografia-agentes-personalizados.png"
+            src="/assets/infografia-agentes-personalizados.webp"
             alt="Arquitectura de Agentes Inteligentes JhedAI: Del Diagnóstico al Retorno de Inversión"
             className="w-full h-auto rounded-2xl shadow-[0_20px_60px_-15px_rgba(0,55,100,0.25)] ring-1 ring-neutral-200/50"
           />

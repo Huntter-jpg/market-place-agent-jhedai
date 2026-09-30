@@ -78,7 +78,7 @@ export default function PhoneMockup() {
                 {/* Chat screenshot */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/assets/telefono_portada.png"
+                  src="/assets/telefono_portada.webp"
                   alt="Chat de agente IA JhedAI en acción"
                   className="w-full h-full object-cover"
                 />
