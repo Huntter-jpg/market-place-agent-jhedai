@@ -4,6 +4,16 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "market-place-agent-jhedai",
   "compatibility_date": "2026-05-01",
+  /* Serve the production hostname from this Worker. A route, not a custom
+     domain: the DNS record for agentes.jhedai.com stays exactly as it is, so
+     there is no window in which the name fails to resolve. zone_id rather
+     than zone_name, which the docs note needs account scope on the token. */
+  "routes": [
+    {
+      "pattern": "agentes.jhedai.com/*",
+      "zone_id": "0f96b8398c1b0fb5ff2b7f196273f10a"
+    }
+  ],
   "assets": {
     "directory": "./out",
     // Next's export writes /agentes.html; serve it at /agentes.
