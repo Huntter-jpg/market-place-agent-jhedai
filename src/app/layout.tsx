@@ -3,11 +3,16 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AgentProvider from "@/components/AgentProvider";
+import { SITE_URL } from "@/lib/site";
 
 const GOOGLE_ADS_ID = "AW-18147429663";
 const GTM_ID = "GTM-T2F7MJRN";
 
 export const metadata: Metadata = {
+  /* The same export is served from several hostnames (the Pages subdomain,
+     its previews and the Workers one). metadataBase resolves every page's
+     canonical to production, so none of them competes with it in search. */
+  metadataBase: new URL(SITE_URL),
   title: "JhedAI - Agentes de IA a la medida de tu negocio",
   description:
     "Automatiza procesos, multiplica la productividad de tus equipos y genera nuevas ventas con agentes inteligentes diseñados por JhedAI para empresas en Chile y Latinoamérica.",
