@@ -14,6 +14,15 @@
       "zone_id": "0f96b8398c1b0fb5ff2b7f196273f10a"
     }
   ],
+  /* Adding `routes` makes wrangler infer workers_dev as false. Stated here so
+     the intent is recorded and a dashboard toggle cannot flip it back on the
+     next deploy: production is reached at agentes.jhedai.com only, with no
+     duplicate workers.dev hostname serving the same pages. */
+  "workers_dev": false,
+  /* Preview URLs default to the workers_dev setting, so they need their own
+     opt-in. Kept on: a branch push builds a preview to check against
+     `npm run check:prod` before anything reaches production. */
+  "preview_urls": true,
   "assets": {
     "directory": "./out",
     // Next's export writes /agentes.html; serve it at /agentes.
